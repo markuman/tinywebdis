@@ -75,6 +75,7 @@ function redis2json(string)
   local key = args[1]
 
   -- execute command
+  local unpack = table.unpack
   local value = client:call(unpack(args))
 
   -- differentate between nil, type string and table (list in redis)
