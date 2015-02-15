@@ -1,0 +1,3 @@
+[submodule "luadyad"]
+	path = luadyad
+	url = https://github.com/markuman/luadyad
