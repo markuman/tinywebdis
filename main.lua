@@ -1,4 +1,4 @@
--- tinywebdis 0.1
+-- tinywebdis 0.2
 function main(input)
 
   -- parsing number of arguments (path based)
@@ -6,7 +6,7 @@ function main(input)
   if ((argCount == 1) and (#input == 1)) then
 
     return "<html><body><pre>" ..
-    "usage: command/key/option[1]/option[2]" ..
+    "usage: command/key/option[1]/option[2]/..." ..
     "</pre></body></html>"
 
   else

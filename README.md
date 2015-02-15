@@ -1,6 +1,6 @@
 # tinywebdis
 
-Version 0.1
+Version 0.2
 
 A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad](https://github.com/markuman/luadyad).
 
@@ -19,63 +19,29 @@ A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad]
 
 ### About
 
-`tinywebdis` is path-based _(slash separated arguments)_. Currently only 2, 3 or 4 arguments are supported.
-
+`tinywebdis` is path-based _(slash separated arguments)_.
 
 #### curl examples
 
 
-    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/get/foo
-     {"foo": 42 }
-    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/set/foo/gnupower
-     {"foo": "OK" }
-    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/get/foo
-     {"foo": "gnupower" }
-    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/type/foo
-     {"foo": "string" }
-    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/type/mylist
-     {"mylist": "list" }
-    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/llen/mylist
-     {"mylist": 4 }
-    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/lrange/mylist/0/-1
-    { "mylist":[ "hello", "oi", "oi", "a"]  }
-    [markus@arch tmp]$
 
-
-
-#### screenshots
-
-* get a non-existing key
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/getkey-null.jpg)
-
-* set key value
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/setkey.jpg)
-
-* get key with number as value
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/getkey.jpg)
-
-* get key with string as value
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/getstring.jpg)
-
-* rpush a list
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/rpush.jpg)
-
-* type of a key
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/type.jpg)
-
-* llen of a key
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/llen.jpg)
-
-* lrange a list
-
-![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/lrange.jpg)
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/get/foo
+    {"get": 42 }
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/set/foo/gnupower
+    {"set": "OK" }
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/get/foo
+    {"get": "gnupower" }
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/type/foo
+    {"type": "string" }
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/type/mylist
+    {"type": "list" }
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/llen/mylist
+    {"llen": 4 }
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/lrange/mylist/0/-1
+    { "lrange":[ "hello", "oi", "oi", "a"]  }
+    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/keys/*
+    { "keys":[ "mylist", "a:c", "foo", "a:b", "string"]  }
+    [markus@arch ~]$
 
 
 
