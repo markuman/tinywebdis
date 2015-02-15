@@ -1,6 +1,6 @@
 # tinywebdis
 
-Version 0.2
+Version 0.3
 
 A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad](https://github.com/markuman/luadyad).
 
@@ -25,24 +25,38 @@ A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad]
 
 
 
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/get/foo
+    $ curl -w '\n' http://127.0.0.1:1234/get/foo
     {"get": 42 }
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/set/foo/gnupower
-    {"set": "OK" }
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/get/foo
-    {"get": "gnupower" }
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/type/foo
-    {"type": "string" }
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/type/mylist
-    {"type": "list" }
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/llen/mylist
-    {"llen": 4 }
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/lrange/mylist/0/-1
-    { "lrange":[ "hello", "oi", "oi", "a"]  }
-    [markus@arch ~]$ curl -w '\n' http://127.0.0.1:1234/keys/*
-    { "keys":[ "mylist", "a:c", "foo", "a:b", "string"]  }
-    [markus@arch ~]$
 
+    $ curl -w '\n' http://127.0.0.1:1234/set/foo/gnupower
+    {"set": "OK" }
+
+    $ curl -w '\n' http://127.0.0.1:1234/get/foo
+    {"get": "gnupower" }
+
+    $ curl -w '\n' http://127.0.0.1:1234/type/foo
+    {"type": "string" }
+
+    $ curl -w '\n' http://127.0.0.1:1234/type/mylist
+    {"type": "list" }
+
+    $ curl -w '\n' http://127.0.0.1:1234/llen/mylist
+    {"llen": 4 }
+
+    $ curl -w '\n' http://127.0.0.1:1234/lrange/mylist/0/-1
+    { "lrange":[ "hello", "oi", "oi", "a"]  }
+
+    $ curl -w '\n' http://127.0.0.1:1234/keys/*
+    { "keys":[ "mylist", "a:c", "foo", "a:b", "string"]  }
+
+    $ curl -w '\n' http://127.0.0.1:8000/rpush/tinywebdis/redis
+    {"rpush": 3 }
+
+    curl -w '\n' http://127.0.0.1:8000/llen/tinywebdis
+    {"llen": 3 }
+
+    curl -w '\n' http://127.0.0.1:8000/lrange/tinywebdis/0/-1
+    { "lrange":[ "lua", "dyad", "redis"] }
 
 
 ## debugging
