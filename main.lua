@@ -1,7 +1,7 @@
--- tinywebdis 0.2
+-- tinywebdis 0.3
 function main(input)
 
-  -- parsing number of arguments (path based)
+  -- parsing number of arguments (based on path)
   input,argCount = string.gsub(input, "/", "%1")
   if ((argCount == 1) and (#input == 1)) then
 
@@ -10,8 +10,8 @@ function main(input)
     "</pre></body></html>"
 
   else
-    -- arguments path based
-    return redis2json(input, argCount)
+    -- arguments based on path from luadyad
+    return redis2json(input)
 
   end -- if
 end -- function main
@@ -25,7 +25,7 @@ function splitIntoArgs(path)
   end
 
   return args
-end
+end -- function splitIntoArgs
 
 
 function string2json(key, value)
@@ -39,14 +39,15 @@ function string2json(key, value)
 end -- function key2json
 
 
-function list2json(key, var)
+function list2json(var)
 
   -- get values of a list
-  local js = '{' .. ' "' .. key .. '":['
-
+  local js = ''
   for l = 1,(#var) do
-
-    if tonumber(var[l]) ~= nil then
+    if (type(var[l]) == "table") then
+      -- recursive call
+      js = js .. '[ ' .. list2json(var[l]) .. ']'
+    elseif tonumber(var[l]) ~= nil then
       js = js .. ' ' .. tonumber(var[l])
     else
       js = js .. ' "' .. var[l] .. '"'
@@ -55,18 +56,15 @@ function list2json(key, var)
     -- separate list values
     if l < (#var) then
       js = js .. ','
-    else
-      js = js .. '] '
     end -- if
 
   end -- for l
-
-  return js .. ' }'
+  return js
 
 end -- function list2json
 
 
-function redis2json(string, argCount)
+function redis2json(string)
 
   -- make redis connection using https://github.com/soveran/resp
   local resp = require("resp")
@@ -85,7 +83,8 @@ function redis2json(string, argCount)
   elseif (type(value) == "string") or (type(value) == "number")  then
     return string2json(key,value)
   else
-    return list2json(key,value)
+    return '{' .. ' "' .. key .. '":[' .. list2json(value) .. '] }'
   end -- if t (redis type)
+
 end -- function rediscall
 
