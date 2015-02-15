@@ -22,6 +22,29 @@ A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad]
 `tinywebdis` is path-based _(slash separated arguments)_. Currently only 2, 3 or 4 arguments are supported.
 
 
+#### curl examples
+
+
+    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/get/foo
+     {"foo": 42 }
+    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/set/foo/gnupower
+     {"foo": "OK" }
+    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/get/foo
+     {"foo": "gnupower" }
+    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/type/foo
+     {"foo": "string" }
+    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/type/mylist
+     {"mylist": "list" }
+    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/llen/mylist
+     {"mylist": 4 }
+    [markus@arch tmp]$ curl -w '\n' http://127.0.0.1:1234/lrange/mylist/0/-1
+    { "mylist":[ "hello", "oi", "oi", "a"]  }
+    [markus@arch tmp]$
+
+
+
+#### screenshots
+
 * get a non-existing key
 
 ![getkey-null](https://raw.githubusercontent.com/markuman/tinywebdis/master/doc/getkey-null.jpg)
