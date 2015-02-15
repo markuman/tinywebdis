@@ -17,14 +17,24 @@ function main(input)
 end -- function main
 
 
+function splitIntoArgs(path)
+  local args = {}
+
+  for arg in string.gmatch(path, "[^/]+") do
+    table.insert(args, arg)
+  end
+
+  return args
+end
+
 
 function string2json(key, value)
   if tonumber(value) ~= nil then
-    return ' {"' .. key .. '": ' .. tonumber(value) .. ' }'
+    return '{"' .. key .. '": ' .. tonumber(value) .. ' }'
   elseif (value == nil) then
-    return ' {"' .. key .. '": null }'
+    return '{"' .. key .. '": null }'
   else
-    return ' {"' .. key .. '": "' .. value .. '" }'
+    return '{"' .. key .. '": "' .. value .. '" }'
   end
 end -- function key2json
 
@@ -63,59 +73,19 @@ function redis2json(string, argCount)
   -- enter redis connection details here
   local client = resp.new("127.0.0.1", 6379)
 
-  -- 2 arguments
-  -- e.g.: /get/foo
-  -- e.g.: /type/foo
-  if (tonumber(argCount) == 2) then
+  local args = splitIntoArgs(string)
+  local key = args[1]
 
-    -- separate command and key
-    local command, key = string:match("([^/]+)/([^/]+)")
-    -- execute command
-    local value = client:call(command, key)
+  -- execute command
+  local value = client:call(unpack(args))
 
-    -- differentate between nil, type string and table (list in redis)
-    if (value == nil) then
-      return string2json(key, value)
-
-    elseif (type(value) == "string") or (type(value) == "number")  then
-        return string2json(key,value)
-    else
-        return list2json(key,value)
-    end -- if t (redis type)
-
-  -- 3 arguments
-  -- e.g.: /set/foo/42
-  elseif (tonumber(argCount) == 3) then
-
-    local command, key, value = string:match("([^/]+)/([^/]+)/([^/]+)")
-    local ret                 = client:call(command, key, value)
-
-    if (ret == nil) then
-      return string2json(key, value)
-    elseif (type(ret) == "string") or (type(ret) == "number") then
-      return string2json(key, ret)
-    else
-      return list2json(key, ret)
-    end
-
-  -- 4 arguments
-  -- e.g.: /lrange/foo/0/-1
-  elseif (tonumber(argCount) == 4) then
-
-    local command, key, opt1, opt2 = string:match("([^/]+)/([^/]+)/([^/]+)/([^/]+)")
-    local ret                      = client:call(command, key, opt1, opt2)
-
-    if (ret == nil) then
-      return string2json(key, value)
-    elseif (type(ret) == "string") or (type(ret) == "number") then
-      return string2json(key, ret)
-    else
-      return list2json(key, ret)
-    end
-
+  -- differentate between nil, type string and table (list in redis)
+  if (value == nil) then
+    return string2json(key, value)
+  elseif (type(value) == "string") or (type(value) == "number")  then
+    return string2json(key,value)
   else
-    return "tinywebdis currently supports only 2, 3 or 4 arguments"
-  end -- argument count
-
+    return list2json(key,value)
+  end -- if t (redis type)
 end -- function rediscall
 
