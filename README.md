@@ -58,7 +58,7 @@ A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad]
 
 ## debugging
 
-You can use the `main.lua` file directly in lua for debugging, hacking, expand and improve _(pull requests are welcome!)_.
+You can use the `main.lua` file directly in lua for debugging, hacking, expanding and improving _(pull requests are welcome!)_.
 
     Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
     > require "main"
@@ -66,6 +66,8 @@ You can use the `main.lua` file directly in lua for debugging, hacking, expand a
     > main("/get/foo")
      {"foo": 42 }
     >
+
+
 
 
 
