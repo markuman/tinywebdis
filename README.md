@@ -68,6 +68,8 @@ You can use the `main.lua` file directly in lua for debugging, hacking, expandin
     >
 
 
+At least, this is the very first version and needs some improvements ...whitespaces in keys or unicode stuff can be a problem which possibly can easy be solved using lua 5.3.x only _( ignore, returned_string, errorcode = utf8.codes(returned_resp_string) )_
+
 
 
 
