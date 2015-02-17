@@ -1,6 +1,6 @@
 # tinywebdis
 
-Version 0.3
+Version 0.4
 
 A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad](https://github.com/markuman/luadyad).
 
@@ -12,7 +12,7 @@ A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad]
 ## how to
 
 * get the source `git clone --recursive https://github.com/markuman/tinywebdis`
-* run `./build.sh` _(you can add a c-compiler you want to use as an argument, `./build.sh tcc`)_
+* run `./build.sh` _(default compiler is gcc. you can force a compiler with an argument: `./build.sh tcc`)_
 * change redis connection details in `main.lua` if necessary
 * run `./tinywebdis` _(default port is 8000. To start tinywebdis on another port, run `./tinywebdis 8888`)_
 
@@ -71,7 +71,7 @@ You can use the `main.lua` file directly in lua for debugging, hacking, expandin
     >
 
 
-At least, this is the very first version and needs some improvements ...whitespaces in keys or unicode stuff can be a problem which possibly can easy be solved using lua 5.3.x only _( ignore, returned_string, errorcode = utf8.codes(returned_resp_string) )_
+`tinywebdis` is in an early developement stage. special characters can be a problem. Maybe it can be easily solved using lua 5.3.x only _( ignore, returned_string, errorcode = utf8.codes(returned_resp_string) )_
 
 
 
