@@ -1,4 +1,4 @@
--- tinywebdis 0.3
+-- tinywebdis 0.4
 function main(input)
 
   -- parsing number of arguments (based on path)
@@ -11,7 +11,7 @@ function main(input)
 
   else
     -- arguments based on path from luadyad
-    return redis2json(input)
+    return redis2json(string.gsub(input, '%%', '%%%%'))
 
   end -- if
 end -- function main
