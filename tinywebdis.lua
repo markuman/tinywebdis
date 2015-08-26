@@ -56,8 +56,7 @@ local IndexHandler = class("IndexHandler", turbo.web.RequestHandler)
     if ((argCount <= 1) and (#input <= 1)) then
       self:write({usage="command/key/option[1]/option[2]/..."})
     else
-      ret = callRedis(input)
-      self:write(ret)
+      self:write(callRedis(input))
     end -- if  
   end -- GET
   
