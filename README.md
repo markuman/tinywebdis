@@ -1,6 +1,6 @@
 # tinywebdis
 
-# Version 1.0
+# Version 1.1
 
 Rework of tinywebdis - now with luajit and turbo.lua! It supports now CORS.
 
