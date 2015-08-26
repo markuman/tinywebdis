@@ -13,7 +13,7 @@ Rework of tinywebdis - now with luajit and turbo.lua! It supports now CORS.
 
 ## install
 
-1. `git clone --recursive https://github.com/markuman/tinywebdis
+1. `git clone --recursive https://github.com/markuman/tinywebdis`
 2. `cp resp/resp.lua ./`
 3. `luarocks install turbo lsocket
 4. _optional:_ change redis settings in `tinywebdis.lua`
