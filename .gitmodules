@@ -1,6 +1,3 @@
-[submodule "luadyad"]
-	path = luadyad
-	url = https://github.com/markuman/luadyad
 [submodule "resp"]
 	path = resp
 	url = https://github.com/soveran/resp
