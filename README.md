@@ -1,25 +1,30 @@
 # tinywebdis
 
-Version 0.4
+# Version 1.0
 
-A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad](https://github.com/markuman/luadyad).
+Rework of tinywebdis - now with luajit and turbo.lua! It supports now CORS.
 
 ## requirements
 
-* lua 5.2.x _(liblua is sufficient)_
-* C compiler _(tcc is sufficient)_
+* luajit
+* luarocks
 
-## how to
+... install both with you package manager (when you're using linux).
 
-* get the source `git clone --recursive https://github.com/markuman/tinywebdis`
-* run `./build.sh` _(default compiler is gcc. you can force a compiler with an argument: `./build.sh tcc`)_
-* change redis connection details in `main.lua` if necessary
-* run `./tinywebdis` _(default port is 8000. To start tinywebdis on another port, run `./tinywebdis 8888`)_
+## install
+
+1. `git clone --recursive https://github.com/markuman/tinywebdis
+2. `cp resp/resp.lua ./`
+3. `luarocks install turbo lsocket
+4. _optional:_ change redis settings in `tinywebdis.lua`
+5. execute `tinywebdis.lua` with luajit
 
 
-### About
+## TODO
 
-`tinywebdis` is path-based _(slash separated arguments)_.
+* create config file
+* implement method POST for authentification
+
 
 #### curl examples
 
@@ -59,19 +64,19 @@ A lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad]
     { "lrange":[ "lua", "dyad", "redis"] }
 
 
-## debugging
-
-You can use the `main.lua` file directly in lua for debugging, hacking, expanding and improving _(pull requests are welcome!)_.
-
-    Lua 5.3.0  Copyright (C) 1994-2015 Lua.org, PUC-Rio
-    > require "main"
-    true
-    > main("/get/foo")
-     {"foo": 42 }
-    >
 
 
-`tinywebdis` is in an early developement stage. special characters can be a problem. Maybe it can be easily solved using lua 5.3.x only _( ignore, returned_string, errorcode = utf8.codes(returned_resp_string) )_
+
+## Version 0.x
+
+__See in branch tinywebdis_0.x__
+
+Is a lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad](https://github.com/markuman/luadyad).
+
+## requirements
+
+* lua 5.2.x _(liblua is sufficient)_
+* C compiler _(tcc is sufficient)_
 
 
 
