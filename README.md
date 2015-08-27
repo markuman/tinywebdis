@@ -1,6 +1,6 @@
 # tinywebdis
 
-# Version 1.1
+# Version 1.2
 
 Rework of tinywebdis - now with luajit and turbo.lua! It supports CORS too.
 
@@ -16,13 +16,12 @@ Rework of tinywebdis - now with luajit and turbo.lua! It supports CORS too.
 1. `git clone --recursive https://github.com/markuman/tinywebdis`
 2. `cp resp/resp.lua ./`
 3. `luarocks install turbo lsocket`
-4. _optional:_ change redis settings in `tinywebdis.lua`
-5. execute `tinywebdis.lua` with luajit
+4. _optional:_ make changes in `config.lua`
+5. execute `turbowebdis.lua` with luajit
 
 
 ## TODO
 
-* create config file
 * implement method POST for authentification
 
 

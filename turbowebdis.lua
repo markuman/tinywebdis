@@ -1,10 +1,9 @@
--- tinywebdis 1.1 powered by turbo.lua
+-- tinywebdis 1.2 powered by turbo.lua
 
--- optional, when luajit can't find the dependencies installed by luarocks
--- package.path  = "/home/markus/.luarocks/share/lua/5.1/?.lua;" .. package.path
--- package.cpath = "/home/markus/.luarocks/lib/lua/5.1/?.so;" .. package.cpath
+local config = require("config")
+local turbo  = require("turbo")
 
-local turbo = require("turbo")
+turbo.log.categories.success = successLogging
 
 local function splitIntoArgs(path)
   local args = {}
@@ -19,13 +18,14 @@ local function callRedis(string)
   -- make redis connection using https://github.com/soveran/resp
   local resp = require("resp")
   -- enter redis connection details here
-  local client = resp.new("127.0.0.1", 6379)
-
+  local client = resp.new(host, port)
   local args = splitIntoArgs(string)
   local key = args[1]
 
   -- execute command
   local unpack = table.unpack
+  if #auth > 0 then client:call("AUTH", auth) end
+  if db ~= 0 then client:call("SELECT", db) end
   local value = client:call(unpack(args))
   
   local ret = {}
@@ -74,5 +74,5 @@ local app = turbo.web.Application:new({
     {"/(.*)$", IndexHandler},
 })
 
-app:listen(8888)
+app:listen(httpPort)
 turbo.ioloop.instance():start()
