@@ -2,7 +2,7 @@
 
 # Version 1.1
 
-Rework of tinywebdis - now with luajit and turbo.lua! It supports now CORS.
+Rework of tinywebdis - now with luajit and turbo.lua! It supports CORS too.
 
 ## requirements
 
@@ -67,17 +67,14 @@ Rework of tinywebdis - now with luajit and turbo.lua! It supports now CORS.
 
 
 
-## Version 0.x
+## TurboWebdis, TinyWebdis & CherryWebdis
 
-__See in branch tinywebdis_0.x__
+Go here for detailed install instructions: [Installation](https://github.com/markuman/tinywebdis/wiki/Installation)
 
-Is a lean [webdis](https://github.com/nicolasff/webdis) replacement using [luadyad](https://github.com/markuman/luadyad).
 
-## requirements
-
-* lua 5.2.x _(liblua is sufficient)_
-* C compiler _(tcc is sufficient)_
-
+* TurboWebdis is currently the main version (and the fastest).
+* TinyWebdis is currently not maintained but stable (and the tiniest installation).
+* CherryWebdis is maybe the easiest to install version (but incomplete!)
 
 
 
