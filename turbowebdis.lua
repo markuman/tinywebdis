@@ -25,7 +25,7 @@ local function callRedis(string)
   -- execute command
   local unpack = table.unpack
   if #auth > 0 then client:call("AUTH", auth) end
-  if db ~= 0 then client:call("SELECT", db) end
+  if db ~= "0" then client:call("SELECT", db) end
   local value = client:call(unpack(args))
   
   local ret = {}
@@ -37,13 +37,18 @@ end -- function callRedis
 
 local IndexHandler = class("IndexHandler", turbo.web.RequestHandler)
 
-  -- Method POST not implemented yet
-  -- This is needed for e.g. authentification
-  --function IndexHandler:post()
-  --  self:add_header('Access-Control-Allow-Origin','*')
-  --  local json = self:get_json(true)
-  --  for key,value in pairs(json) do print(key,value) end -- output in terminal!
-  -- end -- POST
+  -- Method POST
+  -- Sending json like this   JSON.stringify({"auth": "", "db": 1, "command": ["GET", "SOME", "VALUE"]}) 
+  function IndexHandler:post()
+    self:add_header('Access-Control-Allow-Origin','*')
+    local json = self:get_json(true)
+
+    auth = json['auth'] or auth
+    db   = tostring(json['db'] or db) -- make sure that the db number is a string
+    local cmd  = json['command']
+
+    self:write(callRedis(table.concat(cmd,'/')))
+  end -- POST
   
   -- Method GET
   function IndexHandler:get(input)

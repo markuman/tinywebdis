@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta content='text/html; charset=utf-8' http-equiv='content-type'>
+          <title>turbowebdis</title>
+          <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script>
+      <script type='text/javascript'>
+        $(document).ready(function()
+        {
+          $('button').on('click', function()
+          {
+            $.ajax({
+              'type'        : 'POST',
+              'dataType'    : 'JSON',
+              'contentType' : 'application/json',
+              'url'         : 'http://localhost:8888/',
+              'data'        : JSON.stringify({"auth": "foobar", "db": 1, "command": ["SET", "SOME", "VALUE"]}),
+              'success'     : function(response)
+              {
+                console.log(response);  
+                document.write(JSON.stringify(response));
+              }
+            });
+          })
+        });
+      </script>
+   </head>
+   <body>
+        <button>make request</button>
+   </body>
+</html>
