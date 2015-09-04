@@ -89,4 +89,8 @@ Go here for detailed install instructions: [Installation](https://github.com/mar
 * CherryWebdis is maybe the easiest to install version (but incomplete!)
 
 
+#### Alternatively
+
+* Rust-Webdis by [badboy](https://github.com/badboy/webdis-rs)
+* Origin Webdis by [nicolasff](https://github.com/nicolasff/webdis)
 
