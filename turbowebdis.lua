@@ -23,7 +23,7 @@ local function callRedis(string)
   local key = args[1]
 
   -- execute command
-  local unpack = table.unpack
+  local unpack = unpack or table.unpack
   if #auth > 0 then client:call("AUTH", auth) end
   if db ~= "0" then client:call("SELECT", db) end
   local value = client:call(unpack(args))
