@@ -1,6 +1,6 @@
 # tinywebdis
 
-# Version 1.2
+# Version 1.3
 
 Rework of tinywebdis - now with luajit and turbo.lua! It supports CORS too.
 
@@ -18,11 +18,6 @@ Rework of tinywebdis - now with luajit and turbo.lua! It supports CORS too.
 3. `luarocks install turbo lsocket`
 4. _optional:_ make changes in `config.lua`
 5. execute `turbowebdis.lua` with luajit
-
-
-## TODO
-
-* implement method POST for authentification
 
 
 #### curl examples
@@ -64,6 +59,24 @@ Rework of tinywebdis - now with luajit and turbo.lua! It supports CORS too.
 
 
 
+#### HTML JQUERY CORS example
+
+You can send a json object to turbowebdis like this.
+
+    {
+        "auth": "foobar",
+        "db": "0",
+        "command": [
+            "SET",
+            "SOME",
+            "VALUE"
+        ]
+    }
+
+
+The key/value pairs `auth` and/or `db` are not a must have. When they are missed, the default values from `config.lua` file are taken.  
+`db` should be a string. But you can pass it as a number too. Turbowebdis will take care of it.  
+See `json_example.html` as a standalone example (open the file directly in your webbrowser).
 
 
 ## TurboWebdis, TinyWebdis & CherryWebdis
