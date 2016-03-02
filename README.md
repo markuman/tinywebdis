@@ -13,6 +13,15 @@ Webdis replacement using TurboLua.
 
 ## install
 
+E.g. if you're on a fresh Ubuntu
+
+1. just install `git` and `make`
+2. `git clone --recursive https://github.com/markuman/tinywebdis`
+3. `make ubuntu`
+4. `make start`
+
+
+
 
 	$ make
 	arch                           Install system dependencies on arch linux
