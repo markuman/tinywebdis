@@ -21,16 +21,14 @@ E.g. if you're on a fresh Ubuntu
 4. `make start`
 
 
-
-
-	$ make
-	arch                           Install system dependencies on arch linux
-	install                        Install turbowebdis dependencies locally
-	start                          Start turbowebdis
-	stop                           Stop turbowebdis
-	tabularasa                     Tabula rasa
-	ubuntu                         Install system dependencies on ubuntu
-	uninstall                      Uninstall turbo dependencies
+		$ make
+		arch                           Install system dependencies on arch linux
+		install                        Install turbowebdis dependencies locally
+		start                          Start turbowebdis
+		stop                           Stop turbowebdis
+		tabularasa                     Tabula rasa
+		ubuntu                         Install system dependencies on ubuntu
+		uninstall                      Uninstall turbo dependencies
 
 
 #### curl examples
