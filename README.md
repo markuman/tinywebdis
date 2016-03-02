@@ -1,23 +1,27 @@
 # tinywebdis
 
-# Version 1.3
-
-Rework of tinywebdis - now with luajit and turbo.lua! It supports CORS too.
+Webdis replacement using TurboLua.
 
 ## requirements
 
 * luajit
-* luarocks
+* luarocks 5.1
+* redis
+* gcc (to build TurboLua)
 
 ... install both with you package manager (when you're using linux).
 
 ## install
 
-1. `git clone --recursive https://github.com/markuman/tinywebdis`
-2. `cp resp/resp.lua ./`
-3. `luarocks install turbo lsocket`
-4. _optional:_ make changes in `config.lua`
-5. execute `turbowebdis.lua` with luajit
+
+	$ make
+	arch                           Install system dependencies on arch linux
+	install                        Install turbowebdis dependencies locally
+	start                          Start turbowebdis
+	stop                           Stop turbowebdis
+	tabularasa                     Tabula rasa
+	ubuntu                         Install system dependencies on ubuntu
+	uninstall                      Uninstall turbo dependencies
 
 
 #### curl examples
