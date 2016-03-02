@@ -23,7 +23,8 @@ install: ## Install turbowebdis dependencies locally
 start: ## Start turbowebdis
 	@echo "Starting turbowebdis"
 	@source $$HOME/.bashrc
-	@./turbowebdis.lua & echo "$$!" > turbo.pid
+	@echo $$(date) > turbo.log
+	@./turbowebdis.lua >> turbo.log 2>&1 & echo "$$!" > turbo.pid
 	
 stop: turbo.pid ## Stop turbowebdis
 	@echo "Stopping turbowebdis"
