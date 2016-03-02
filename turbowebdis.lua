@@ -1,9 +1,10 @@
+#!/usr/bin/luajit
 -- tinywebdis 1.2 powered by turbo.lua
 
 local config = require("config")
 local turbo  = require("turbo")
 
-turbo.log.categories.success = successLogging
+turbo.log.categories.success = config.turbo.logging
 
 local function splitIntoArgs(path)
   local args = {}
@@ -18,14 +19,14 @@ local function callRedis(string)
   -- make redis connection using https://github.com/soveran/resp
   local resp = require("resp")
   -- enter redis connection details here
-  local client = resp.new(host, port)
+  local client = resp.new(config.redis.host, config.redis.port)
   local args = splitIntoArgs(string)
   local key = args[1]
 
   -- execute command
   local unpack = unpack or table.unpack
-  if #auth > 0 then client:call("AUTH", auth) end
-  if db ~= "0" then client:call("SELECT", db) end
+  if #config.redis.auth > 0 then client:call("AUTH", config.redis.auth) end
+  if config.redis.db ~= "0" then client:call("SELECT", config.redis.db) end
   local value = client:call(unpack(args))
   
   local ret = {}
@@ -79,5 +80,5 @@ local app = turbo.web.Application:new({
     {"/(.*)$", IndexHandler},
 })
 
-app:listen(httpPort)
+app:listen(config.turbo.port)
 turbo.ioloop.instance():start()
