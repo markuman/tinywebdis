@@ -7,7 +7,7 @@ arch: ## Install system dependencies on arch linux
 	
 ubuntu: ## Install system dependencies on ubuntu
 	@echo "Installing system requirements using apt-get"
-	@sudo apt-get install redis-server redis-tools luajit luarocks build-essential
+	@sudo apt-get install redis-server redis-tools luajit luarocks gcc libssl-dev
 	@make install LUAROCKS=luarocks
 
 install: ## Install turbowebdis dependencies locally
@@ -16,7 +16,7 @@ install: ## Install turbowebdis dependencies locally
 	@echo "Installing turbo"
 	@PREFIX=$$HOME/.luarocks/ $(LUAROCKS) install turbo --local
 	@echo "setup environment path"
-	@luarocks-5.1 path >> $$HOME/.bashrc
+	@$(LUAROCKS) path >> $$HOME/.bashrc
 	@echo "copy resp"
 	@cp resp/resp.lua ./
 
