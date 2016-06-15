@@ -24,7 +24,7 @@ start: ## Start turbowebdis
 	@echo "Starting turbowebdis"
 	@source $$HOME/.bashrc
 	@echo $$(date) > turbo.log
-	@./turbowebdis.lua >> turbo.log 2>&1 & echo "$$!" > turbo.pid
+	@./turbowebdis.lua >> turbo.log 2>&1 & echo "$$!" > /tmp/turbowebdis.pid
 	
 stop: /tmp/turbowebdis.pid ## Stop turbowebdis
 	@echo "Stopping turbowebdis"
