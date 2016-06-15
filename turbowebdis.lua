@@ -1,5 +1,5 @@
 #!/usr/bin/luajit
--- tinywebdis 1.2 powered by turbo.lua
+-- tinywebdis 1.3 powered by turbo.lua
 
 local config = require("config")
 local turbo  = require("turbo")
