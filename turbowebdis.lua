@@ -10,7 +10,9 @@ turbo.log.categories.success = config.turbo.logging
 local function splitIntoArgs(path)
   local args = {}
   for arg in string.gmatch(path, "[^/]+") do
-    table.insert(args, arg)
+    -- table.insert(args, arg)
+    -- faster way (less function calls)
+    args[#args+1] = arg
   end
   return args
 end -- function splitIntoArgs
