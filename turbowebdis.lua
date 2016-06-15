@@ -3,6 +3,7 @@
 
 local config = require("config")
 local turbo  = require("turbo")
+local escape = require("turbo.escape")
 
 turbo.log.categories.success = config.turbo.logging
 
@@ -62,16 +63,27 @@ local IndexHandler = class("IndexHandler", turbo.web.RequestHandler)
     if ((argCount <= 1) and (#input <= 1)) then
       self:write({usage="command/key/option[1]/option[2]/..."})
     else
-      self:write(callRedis(input))
+      -- get/a?callback=mycallback
+      -- jsonp return
+       
+      local callback = self:get_argument("callback", -1)
+      if ((config.turbo.JSONP) and (type (callback) == "string")) then
+        local retval = callRedis (input)
+        self:write (callback .. "(" .. escape.json_encode (retval) .. ")")	    
+	  else
+        self:write (callRedis (input))
+      end
     end -- if  
   end -- GET
   
   -- CORS preflight request
   -- necessary for POST method
   function IndexHandler:options()
-    self:add_header('Access-Control-Allow-Methods', 'POST')
-    self:add_header('Access-Control-Allow-Headers', 'content-type')
-    self:add_header('Access-Control-Allow-Origin', '*')
+    if (config.turbo.CORS) then
+      self:add_header('Access-Control-Allow-Methods', 'POST')
+      self:add_header('Access-Control-Allow-Headers', 'content-type')
+      self:add_header('Access-Control-Allow-Origin', '*')
+    end
   end -- CORS preflight
   
   
