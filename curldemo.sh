@@ -20,3 +20,6 @@ curl -w '\n' http://127.0.0.1:8888/rpush/tinywebdis/dyad
 curl -w '\n' http://127.0.0.1:8888/rpush/tinywebdis/redis
 curl -w '\n' http://127.0.0.1:8888/llen/tinywebdis
 curl -w '\n' http://127.0.0.1:8888/lrange/tinywebdis/0/-1
+
+# jsonp
+curl -w '\n' http://127.0.0.1:8888/get/a:b?callback=myfunc
