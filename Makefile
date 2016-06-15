@@ -26,7 +26,7 @@ start: ## Start turbowebdis
 	@echo $$(date) > turbo.log
 	@./turbowebdis.lua >> turbo.log 2>&1 & echo "$$!" > turbo.pid
 	
-stop: turbo.pid ## Stop turbowebdis
+stop: /tmp/turbowebdis.pid ## Stop turbowebdis
 	@echo "Stopping turbowebdis"
 	@kill `cat $<` && rm $<
 	
