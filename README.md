@@ -67,6 +67,11 @@ E.g. if you're on a fresh Ubuntu
 
     curl -w '\n' http://127.0.0.1:8000/lrange/tinywebdis/0/-1
     { "lrange":[ "lua", "dyad", "redis"] }
+    
+##### jsonp support
+
+    curl -w '\n' http://127.0.0.1:8888/get/foo?callback=myfunc
+    myfunc({"get":"gnupower"})
 
 
 
